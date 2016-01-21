@@ -22,8 +22,9 @@ _____.___.                                      __    .__
 |  |/    \ /  ___/\   __\__  \ |  | |  | _/ __ \ / __ |                               
 |  |   |  \\___ \  |  |  / __ \|  |_|  |_\  ___// /_/ |                               
 |__|___|  /____  > |__| (____  /____/____/\___  >____ |                               
-        \/     \/            \/               \/     \/                               """
-
+        \/     \/            \/               \/     \/                               
+Warning!!!!
+You must have git and python installed"""
 
 print "cheacking for updates..."
 import urllib2,os
@@ -123,22 +124,13 @@ if __name__ == '__main__':
    typing = False
    text = ""
 
-   # chat vars
-   t1 = ""
-   t2 = ""
-   t3 = ""
-   t4 = ""
-   t5 = ""
-   t6 = ""
-   t7 = ""
-   t8 = ""
-   t9 = ""
+
    
 
    # Set up buttons
    DATE = Button('Date')
    TIME = Button('Time')
-   TEXT = Button("Type here:")
+   TEXT = Button("Type your rule here:")
 
    ## Setup text
    font = pygame.font.SysFont("monospace", 15)
@@ -168,18 +160,7 @@ if __name__ == '__main__':
             elif event.key == K_BACKSPACE:
                 text = text[:-1]
                 TYPE_TEXT = font.render(text, True, (0, 128, 0))
-            elif event.key == K_RETURN:
-                s.send(text)
-                print "sent: " + text
-                t9 = t8
-                t8 = t7
-                t7 = t6
-                t6 = t5
-                t5 = t4
-                t4 = t3
-                t3 = t2
-                t2 = t1
-                t1 = "[You]:"+text
+            elif event.key == K_RETURN: 
                 text = ""
                 TYPE_TEXT = font.render(text, True, (0, 128, 0))
             elif event.key == pygame.K_1:
@@ -203,6 +184,24 @@ if __name__ == '__main__':
                text = text + str(9)
             elif event.key == (pygame.K_0):
                text = text + str(0)
+            elif event.key == (pygame.K_LEFTPAREN):
+               text = text + str("(")
+            elif event.key == (pygame.K_RIGHTPAREN):
+               text = text + str(")")
+            elif event.key == (pygame.K_COMMA):
+               text = text + str(",")
+            elif event.key == (pygame.K_KP_DIVIDE):
+               text = text + str("/")
+            elif event.key == (pygame.K_KP_MULTIPLY):
+               text = text + str("*")
+            elif event.key == (pygame.K_KP_MINUS):
+               text = text + str("-")
+            elif event.key == (pygame.K_KP_PLUS):
+               text = text + str("+")
+            elif event.key == (pygame.K_0):
+               text = text + str("")
+            
+            
 
 
               
@@ -227,10 +226,10 @@ if __name__ == '__main__':
             elif TEXT.obj.collidepoint(mouse):
                if typing == False:
                   typing = True
-                  TYPE = Button("Typing")
-               else:
-                  typing = False
-                  TYPE = Button("Type")
+                  TEXT_text = "Typing rule:"+str(text)
+                  TEXT = Button(TEXT_text)
+                  print "c"
+               
 
 
 
@@ -242,39 +241,19 @@ if __name__ == '__main__':
          TIME = Button(str(datetime.datetime.now().time()))
       
       if typing == True:
-          TEXT_text = ("Typing...:"+str(text))
-      else:
-          TEXT_text = ("Type here:"+str(text))
+         TEXT_text = "Typing rule:"+str(text)
+         TEXT = Button(TEXT_text)
 
-
-      T1 = font.render(t1, 1, (255,255,0))
-      T2 = font.render(t2, 1, (255,255,0))
-      T3 = font.render(t3, 1, (255,255,0))
-      T4 = font.render(t4, 1, (255,255,0))
-      T5 = font.render(t5, 1, (255,255,0))
-      T6 = font.render(t6, 1, (255,255,0))
-      T7 = font.render(t7, 1, (255,255,0))
-      T8 = font.render(t8, 1, (255,255,0))
-      T9 = font.render(t9, 1, (255,255,0)) 
-      screen.blit(T9, (30, 515))
-      screen.blit(T8, (30, 530))
-      screen.blit(T7, (30, 545))
-      screen.blit(T6, (30, 560))
-      screen.blit(T5, (30, 575))
-      screen.blit(T4, (30, 590))
-      screen.blit(T3, (30, 605))
-      screen.blit(T2, (30, 620))
-      screen.blit(T1, (30, 635))
       
       
-      TEXT = Button(TEXT_text)
+   
       
       
       TIME.draw(screen, mouse, (850,15,120,20), (875,18))
       DATE.draw(screen, mouse, (700,15,100,20), (724,18))
-      TEXT.draw(screen, mouse, (30, 650,660,20), (55,654))
+      TEXT.draw(screen, mouse, (30, 980,660,20), (34,983))
       
-      screen.blit(pointer,((mouseX-25),(mouseY-25)))
+      screen.blit(pointer,((mouseX-30),(mouseY-30)))
       pygame.display.update()
       screen.fill(BLACK)
       screen.blit(grid,(0,0))

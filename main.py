@@ -114,7 +114,7 @@ if __name__ == '__main__':
    # Set up screen and clock
    screen = pygame.display.set_mode((1000,1000))
    clock = pygame.time.Clock()
-   pygame.display.set_caption('Encrypted text sender')
+   pygame.display.set_caption('GGolf')
    
 
    # Set up vars
@@ -123,17 +123,18 @@ if __name__ == '__main__':
    TIME_clicked = 1
    typing = False
    text = ""
-
-
+   TEXT_text = "Type your rule here:"
+   ctrl = False
+   shift = False
    
 
    # Set up buttons
    DATE = Button('Date')
    TIME = Button('Time')
-   TEXT = Button("Type your rule here:")
+   TEXT = Button("")
 
    ## Setup text
-   font = pygame.font.SysFont("monospace", 15)
+   font = pygame.font.SysFont('monospace',100) #SysFont creates a font object from available pygame fonts
 
 
    ## load images
@@ -141,97 +142,226 @@ if __name__ == '__main__':
    pointerrect = pointer.get_rect()
    grid = pygame.image.load("grid.png")
 
+   shifted = False
+   sr = '\'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\\\'()*+,-./:;<=>?@[\]^_`{|}~\''
    while run:
-    
+       
+
+      
       pygame.mouse.set_visible(False)      
       (mouseX, mouseY) = pygame.mouse.get_pos()
       mouse = pygame.mouse.get_pos()
-      for event in pygame.event.get():
+      
+      events = pygame.event.get()
+      for event in events:
+            if event.type == KEYUP and typing == True:
+                if event.key == K_LSHIFT or event.key == K_RSHIFT: shifted = False
+            if event.type == KEYDOWN and typing == True:
+                if event.key == K_BACKSPACE: text = text[:-1]
+                elif event.key == K_LSHIFT or event.key == K_RSHIFT: shifted = True
+                elif event.key == K_SPACE: text += ' '
+                if not shifted:
+                    if event.key == K_a and 'a' in sr: text += 'a'
+                    elif event.key == K_b and 'b' in sr: text += 'b'
+                    elif event.key == K_c and 'c' in sr: text += 'c'
+                    elif event.key == K_d and 'd' in sr: text += 'd'
+                    elif event.key == K_e and 'e' in sr: text += 'e'
+                    elif event.key == K_f and 'f' in sr: text += 'f'
+                    elif event.key == K_g and 'g' in sr: text += 'g'
+                    elif event.key == K_h and 'h' in sr: text += 'h'
+                    elif event.key == K_i and 'i' in sr: text += 'i'
+                    elif event.key == K_j and 'j' in sr: text += 'j'
+                    elif event.key == K_k and 'k' in sr: text += 'k'
+                    elif event.key == K_l and 'l' in sr: text += 'l'
+                    elif event.key == K_m and 'm' in sr: text += 'm'
+                    elif event.key == K_n and 'n' in sr: text += 'n'
+                    elif event.key == K_o and 'o' in sr: text += 'o'
+                    elif event.key == K_p and 'p' in sr: text += 'p'
+                    elif event.key == K_q and 'q' in sr: text += 'q'
+                    elif event.key == K_r and 'r' in sr: text += 'r'
+                    elif event.key == K_s and 's' in sr: text += 's'
+                    elif event.key == K_t and 't' in sr: text += 't'
+                    elif event.key == K_u and 'u' in sr: text += 'u'
+                    elif event.key == K_v and 'v' in sr: text += 'v'
+                    elif event.key == K_w and 'w' in sr: text += 'w'
+                    elif event.key == K_x and 'x' in sr: text += 'x'
+                    elif event.key == K_y and 'y' in sr: text += 'y'
+                    elif event.key == K_z and 'z' in sr: text += 'z'
+                    elif event.key == K_0 and '0' in sr: text += '0'
+                    elif event.key == K_1 and '1' in sr: text += '1'
+                    elif event.key == K_2 and '2' in sr: text += '2'
+                    elif event.key == K_3 and '3' in sr: text += '3'
+                    elif event.key == K_4 and '4' in sr: text += '4'
+                    elif event.key == K_5 and '5' in sr: text += '5'
+                    elif event.key == K_6 and '6' in sr: text += '6'
+                    elif event.key == K_7 and '7' in sr: text += '7'
+                    elif event.key == K_8 and '8' in sr: text += '8'
+                    elif event.key == K_9 and '9' in sr: text += '9'
+                    elif event.key == K_BACKQUOTE and '`' in sr: text += '`'
+                    elif event.key == K_MINUS and '-' in sr: text += '-'
+                    elif event.key == K_EQUALS and '=' in sr: text += '='
+                    elif event.key == K_LEFTBRACKET and '[' in sr: text += '['
+                    elif event.key == K_RIGHTBRACKET and ']' in sr: text += ']'
+                    elif event.key == K_BACKSLASH and '\\' in sr: text += '\\'
+                    elif event.key == K_SEMICOLON and ';' in sr: text += ';'
+                    elif event.key == K_QUOTE and '\'' in sr: text += '\''
+                    elif event.key == K_COMMA and ',' in sr: text += ','
+                    elif event.key == K_PERIOD and '.' in sr: text += '.'
+                    elif event.key == K_SLASH and '/' in sr: text += '/'
+                elif shifted:
+                    if event.key == K_a and 'A' in sr: text += 'A'
+                    elif event.key == K_b and 'B' in sr: text += 'B'
+                    elif event.key == K_c and 'C' in sr: text += 'C'
+                    elif event.key == K_d and 'D' in sr: text += 'D'
+                    elif event.key == K_e and 'E' in sr: text += 'E'
+                    elif event.key == K_f and 'F' in sr: text += 'F'
+                    elif event.key == K_g and 'G' in sr: text += 'G'
+                    elif event.key == K_h and 'H' in sr: text += 'H'
+                    elif event.key == K_i and 'I' in sr: text += 'I'
+                    elif event.key == K_j and 'J' in sr: text += 'J'
+                    elif event.key == K_k and 'K' in sr: text += 'K'
+                    elif event.key == K_l and 'L' in sr: text += 'L'
+                    elif event.key == K_m and 'M' in sr: text += 'M'
+                    elif event.key == K_n and 'N' in sr: text += 'N'
+                    elif event.key == K_o and 'O' in sr: text += 'O'
+                    elif event.key == K_p and 'P' in sr: text += 'P'
+                    elif event.key == K_q and 'Q' in sr: text += 'Q'
+                    elif event.key == K_r and 'R' in sr: text += 'R'
+                    elif event.key == K_s and 'S' in sr: text += 'S'
+                    elif event.key == K_t and 'T' in sr: text += 'T'
+                    elif event.key == K_u and 'U' in sr: text += 'U'
+                    elif event.key == K_v and 'V' in sr: text += 'V'
+                    elif event.key == K_w and 'W' in sr: text += 'W'
+                    elif event.key == K_x and 'X' in sr: text += 'X'
+                    elif event.key == K_y and 'Y' in sr: text += 'Y'
+                    elif event.key == K_z and 'Z' in sr: text += 'Z'
+                    elif event.key == K_0 and ')' in sr: text += ')'
+                    elif event.key == K_1 and '!' in sr: text += '!'
+                    elif event.key == K_2 and '@' in sr: text += '@'
+                    elif event.key == K_3 and '#' in sr: text += '#'
+                    elif event.key == K_4 and '$' in sr: text += '$'
+                    elif event.key == K_5 and '%' in sr: text += '%'
+                    elif event.key == K_6 and '^' in sr: text += '^'
+                    elif event.key == K_7 and '&' in sr: text += '&'
+                    elif event.key == K_8 and '*' in sr: text += '*'
+                    elif event.key == K_9 and '(' in sr: text += '('
+                    elif event.key == K_BACKQUOTE and '~' in sr: text += '~'
+                    elif event.key == K_MINUS and '_' in sr: text += '_'
+                    elif event.key == K_EQUALS and '+' in sr: text += '+'
+                    elif event.key == K_LEFTBRACKET and '{' in sr: text += '{'
+                    elif event.key == K_RIGHTBRACKET and '}' in sr: text += '}'
+                    elif event.key == K_BACKSLASH and '|' in sr: text += '|'
+                    elif event.key == K_SEMICOLON and ':' in sr: text += ':'
+                    elif event.key == K_QUOTE and '"' in sr: text += '"'
+                    elif event.key == K_COMMA and '<' in sr: text += '<'
+                    elif event.key == K_PERIOD and '>' in sr: text += '>'
+                    elif event.key == K_SLASH and '?' in sr: text += '?'
          
-         if event.type == pygame.QUIT:
-            run = False
-            pygame.quit()
-            sys.quit()
-            print "quit"
-         elif typing == True and event.type == KEYDOWN:
-            if event.unicode.isalpha():
-                text += event.unicode
-                TYPE_TEXT = font.render(text, True, (0, 128, 0))
-            elif event.key == K_BACKSPACE:
-                text = text[:-1]
-                TYPE_TEXT = font.render(text, True, (0, 128, 0))
-            elif event.key == K_RETURN: 
-                text = ""
-                TYPE_TEXT = font.render(text, True, (0, 128, 0))
-            elif event.key == pygame.K_1:
-                
-               text = text + str(1)
-            elif event.key == pygame.K_2:
-               text = text + str(2)
-            elif event.key == pygame.K_3:
-               text = text + str(3)
-            elif event.key == pygame.K_4:
-               text = text + str(4)
-            elif event.key == pygame.K_5:
-               text = text + str(5)
-            elif event.key == pygame.K_6:
-               text = text + str(6)
-            elif event.key == pygame.K_7:
-               text = text + str(7)
-            elif event.key == pygame.K_8:
-               text = text + str(8)
-            elif event.key == pygame.K_9:
-               text = text + str(9)
-            elif event.key == (pygame.K_0):
-               text = text + str(0)
-            elif event.key == (pygame.K_LEFTPAREN):
-               text = text + str("(")
-            elif event.key == (pygame.K_RIGHTPAREN):
-               text = text + str(")")
-            elif event.key == (pygame.K_COMMA):
-               text = text + str(",")
-            elif event.key == (pygame.K_KP_DIVIDE):
-               text = text + str("/")
-            elif event.key == (pygame.K_KP_MULTIPLY):
-               text = text + str("*")
-            elif event.key == (pygame.K_KP_MINUS):
-               text = text + str("-")
-            elif event.key == (pygame.K_KP_PLUS):
-               text = text + str("+")
-            elif event.key == (pygame.K_0):
-               text = text + str("")
+            if event.type == pygame.QUIT:
+               run = False
+               pygame.quit()
+               sys.quit()
+               print "quit"
+##         elif typing == True and event.type == KEYDOWN:
+##            if ctrl == True:
+##               ctrl = False
+##               if event.key == 48:
+##                  text = text + str("*")
+##            elif shift == True:
+##               shift = False
+##               
+##               if event.key == 47:
+##                  text = text + str("/")
+##               if event.key == 57:
+##                  text = text + str("(")
+##               if event.key == 48:
+##                  text = text + str(")")
+##               if event.key == 47:
+##                  text = text + str("/")
+##               if event.key == 61:
+##                  text = text + str("+")
+##               
+##               
+##            else:                 
+##               print event.key,"-",(pygame.K_KP_PLUS)
+##               if event.unicode.isalpha():
+##                   text += event.unicode
+##                   TYPE_TEXT = font.render(text, True, (0, 128, 0))
+##               elif event.key == K_BACKSPACE:
+##                   text = text[:-1]
+##                   TYPE_TEXT = font.render(text, True, (0, 128, 0))
+##               elif event.key == K_RETURN: 
+##                   text = ""
+##                   TYPE_TEXT = font.render(text, True, (0, 128, 0))
+##               elif event.key == pygame.K_1:
+##                   
+##                  text = text + str(1)
+##               elif event.key == pygame.K_2:
+##                  text = text + str(2)
+##               elif event.key == pygame.K_3:
+##                  text = text + str(3)
+##               elif event.key == pygame.K_4:
+##                  text = text + str(4)
+##               elif event.key == pygame.K_5:
+##                  text = text + str(5)
+##               elif event.key == pygame.K_6:
+##                  text = text + str(6)
+##               elif event.key == pygame.K_7:
+##                  text = text + str(7)
+##               elif event.key == pygame.K_8:
+##                  text = text + str(8)
+##               elif event.key == pygame.K_9:
+##                  text = text + str(9)
+##               elif event.key == (pygame.K_0):
+##                  text = text + str(0)
+##               elif event.key == (pygame.K_LEFTPAREN):
+##                  text = text + str("(")
+##               elif event.key == (pygame.K_RIGHTPAREN):
+##                  text = text + str(")")
+##               elif event.key == (pygame.K_COMMA):
+##                  text = text + str(",")
+##               elif event.key == (pygame.K_KP_DIVIDE):
+##                  text = text + str("/")
+##               elif event.key == (pygame.K_KP_MULTIPLY):
+##                  text = text + str("*")
+##               elif event.key == 45:
+##                  text = text + str("-")
+##               elif event.key == (pygame.K_KP_PLUS):
+##                  text = text + str("+")
+##               elif event.key == (pygame.K_0):
+##                  text = text + str("")
+##               if event.key == 306:
+##                  ctrl = True
+##               elif event.key == 304:
+##                  shift = True
+               
             
             
 
 
               
-         elif event.type == pygame.MOUSEBUTTONDOWN:
-            pygame.mixer.music.load("click.wav")
-            pygame.mixer.music.play()
-            if not TEXT.obj.collidepoint(mouse):
-               typing = False
-            if DATE.obj.collidepoint(mouse):
+            if event.type == pygame.MOUSEBUTTONDOWN:
+               pygame.mixer.music.load("click.wav")
+               pygame.mixer.music.play()
+               if not TEXT.obj.collidepoint(mouse):
+                  typing = False
+               if DATE.obj.collidepoint(mouse):
 ################################################################################################
-               if DATE_clicked == 0: DATE_clicked = 1
-               else: DATE_clicked = 0
+                  if DATE_clicked == 0: DATE_clicked = 1
+                  else: DATE_clicked = 0
 ####################################################################################################
-            elif TIME.obj.collidepoint(mouse):
-                if TIME_clicked == 0: TIME_clicked = 1
-                else: TIME_clicked = 0
+               elif TIME.obj.collidepoint(mouse):
+                   if TIME_clicked == 0: TIME_clicked = 1
+                   else: TIME_clicked = 0
 ####################################################################################################
             
 ####################################################################################################
 
 ####################################################################################################
-            elif TEXT.obj.collidepoint(mouse):
-               if typing == False:
+               elif TEXT.obj.collidepoint(mouse):
                   typing = True
-                  TEXT_text = "Typing rule:"+str(text)
-                  TEXT = Button(TEXT_text)
-                  print "c"
-               
 
-
+      
 
 
                
@@ -242,18 +372,26 @@ if __name__ == '__main__':
       
       if typing == True:
          TEXT_text = "Typing rule:"+str(text)
-         TEXT = Button(TEXT_text)
+         TEXT = Button("")
+      else:
+         TEXT_text = "Type your rule here:"+str(text)
 
       
       
-   
+      # initialize font; must be called after 'pygame.init()' to avoid 'Font not Initialized' error
+      myfont = pygame.font.SysFont("monospace", 15)
+
+      # render text
+      label = myfont.render(TEXT_text, 1, (0,0,0))
       
       
       TIME.draw(screen, mouse, (850,15,120,20), (875,18))
       DATE.draw(screen, mouse, (700,15,100,20), (724,18))
-      TEXT.draw(screen, mouse, (30, 980,660,20), (34,983))
+      TEXT.draw(screen, mouse, (30, 980,660,40), (34,983))
+      screen.blit(label, (30, 980))
       
       screen.blit(pointer,((mouseX-30),(mouseY-30)))
       pygame.display.update()
       screen.fill(BLACK)
       screen.blit(grid,(0,0))
+      

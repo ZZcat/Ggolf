@@ -111,20 +111,17 @@ if __name__ == '__main__':
    
 
    # Set up screen and clock
-   screen = pygame.display.set_mode((1000,700))
+   screen = pygame.display.set_mode((1000,1000))
    clock = pygame.time.Clock()
    pygame.display.set_caption('Encrypted text sender')
    
 
    # Set up vars
    run = True
-   DATE_clicked = 0
-   TIME_clicked = 0
-   OS_sys = "win"
+   DATE_clicked = 1
+   TIME_clicked = 1
    typing = False
    text = ""
-   host = "192.168.253.166"
-   port = 9010
 
    # chat vars
    t1 = ""
@@ -141,7 +138,6 @@ if __name__ == '__main__':
    # Set up buttons
    DATE = Button('Date')
    TIME = Button('Time')
-   OS = Button('WIN')
    TEXT = Button("Type here:")
 
    ## Setup text
@@ -151,6 +147,7 @@ if __name__ == '__main__':
    ## load images
    pointer = pygame.image.load("cat_pointer.gif")
    pointerrect = pointer.get_rect()
+   grid = pygame.image.load("grid.png")
 
    while run:
     
@@ -216,43 +213,14 @@ if __name__ == '__main__':
                typing = False
             if DATE.obj.collidepoint(mouse):
 ################################################################################################
-               if DATE_clicked == 0:
-                   
-                  if OS_sys == "mac":
-                     os.system("say Enabling date")
-                     DATE_clicked = 1
-                  else:
-                     DATE_clicked = 1
-               else:
-                  if OS_sys == "mac":
-                     os.system("say Disabling date")
-                     DATE_clicked = 0
-                  if OS_sys == "win":
-                     DATE_clicked = 0
+               if DATE_clicked == 0: DATE_clicked = 1
+               else: DATE_clicked = 0
 ####################################################################################################
             elif TIME.obj.collidepoint(mouse):
-                if TIME_clicked == 0:
-                  if OS_sys == "mac":
-                     os.system("say Enabling time")
-                     TIME_clicked = 1
-                  else:
-                     TIME_clicked = 1
-                else:
-                   if OS_sys == "mac":
-                     os.system("say Disabling time")
-                     TIME_clicked = 0
-                   if OS_sys == "win":
-                      TIME_clicked = 0
+                if TIME_clicked == 0: TIME_clicked = 1
+                else: TIME_clicked = 0
 ####################################################################################################
-            elif OS.obj.collidepoint(mouse):
-                if OS_sys == "win":
-                   OS_sys = "mac"
-                   os.system("Turn on mac mode")
-                   OS = Button('mac')
-                elif OS_sys == "mac":
-                   os.system("Turning off mac mode")
-                   OS_sys = "win"
-                   OS = Button('WIN')
+            
 ####################################################################################################
 
 ####################################################################################################
@@ -300,12 +268,13 @@ if __name__ == '__main__':
       
       
       TEXT = Button(TEXT_text)
-      screen.blit(pointer,((mouseX-25),(mouseY-25)))
       
-      TIME.draw(screen, mouse, (850,15,100,20), (875,18))
+      
+      TIME.draw(screen, mouse, (850,15,120,20), (875,18))
       DATE.draw(screen, mouse, (700,15,100,20), (724,18))
-      OS.draw(screen, mouse, (100,160,100,20), (125,163))
       TEXT.draw(screen, mouse, (30, 650,660,20), (55,654))
       
+      screen.blit(pointer,((mouseX-25),(mouseY-25)))
       pygame.display.update()
       screen.fill(BLACK)
+      screen.blit(grid,(0,0))

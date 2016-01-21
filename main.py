@@ -1,7 +1,33 @@
 #!/usr/bin/python
+print """ __      __                     .__              ._._._.                              
+/  \    /  \_____ _______  ____ |__| ____    ____| | | |                              
+\   \/\/   /\__  \\_  __ \/    \|  |/    \  / ___\ | | |                              
+ \        /  / __ \|  | \/   |  \  |   |  \/ /_/  >|\|\|                              
+  \__/\  /  (____  /__|  |___|  /__|___|  /\___  /______                              
+       \/        \/           \/        \//_____/ \/\/\/                              
+_____.___.                                      __    .__                             
+\__  |   | ____  __ __    _____  __ __  _______/  |_  |  |__ _____ ___  __ ____       
+ /   |   |/  _ \|  |  \  /     \|  |  \/  ___/\   __\ |  |  \\__  \\  \/ // __ \      
+ \____   (  <_> )  |  / |  Y Y  \  |  /\___ \  |  |   |   Y  \/ __ \\   /\  ___/      
+ / ______|\____/|____/  |__|_|  /____//____  > |__|   |___|  (____  /\_/  \___  >     
+ \/                           \/           \/              \/     \/          \/      
+        .__  __                       .___                 __  .__                    
+   ____ |__|/  |_  _____    ____    __| _/ ______ ___.__._/  |_|  |__   ____   ____   
+  / ___\|  \   __\ \__  \  /    \  / __ |  \____ <   |  |\   __\  |  \ /  _ \ /    \  
+ / /_/  >  ||  |    / __ \|   |  \/ /_/ |  |  |_> >___  | |  | |   Y  (  <_> )   |  \ 
+ \___  /|__||__|   (____  /___|  /\____ |  |   __// ____| |__| |___|  /\____/|___|  / 
+/_____/                 \/     \/      \/  |__|   \/                \/            \/  
+.__                 __         .__  .__             .___                              
+|__| ____   _______/  |______  |  | |  |   ____   __| _/                              
+|  |/    \ /  ___/\   __\__  \ |  | |  | _/ __ \ / __ |                               
+|  |   |  \\___ \  |  |  / __ \|  |_|  |_\  ___// /_/ |                               
+|__|___|  /____  > |__| (____  /____/____/\___  >____ |                               
+        \/     \/            \/               \/     \/                               """
+
+
 print "cheacking for updates..."
 import urllib2,os
-response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Update-numbers/master/1')
+response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Ggolf/master/version.txt')
 html = response.read()
 web_vesion = html[:5]
 f = open('version.txt', 'r')
@@ -122,19 +148,6 @@ if __name__ == '__main__':
    font = pygame.font.SysFont("monospace", 15)
 
 
-   ## Conect to remote host
-   try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.settimeout(2)
-        s.connect((host, port))
-        print "Connected to" + host + " on port" , str(port)
-   except:
-        print 'Unable to connect to' + host + " on port" + str(port)
-        override = raw_input("Would you like to conntine?(Y or N): ")
-        if override == "y" or override == "Y" or override == "yes" or override == "Yes" or override == "sure" or override == "True":
-            print "overriding..."
-        else:
-            sys.exit()
    ## load images
    pointer = pygame.image.load("cat_pointer.gif")
    pointerrect = pointer.get_rect()
@@ -143,34 +156,6 @@ if __name__ == '__main__':
     
       pygame.mouse.set_visible(False)      
       (mouseX, mouseY) = pygame.mouse.get_pos()
-      print 1
-      socket_list = [0, s]
-      print 2
-      # Get the list sockets which are readable
-      ready_to_read,ready_to_write,in_error = select.select(socket_list , "", "")
-      print 3
-      for sock in ready_to_read:
-          print 4
-          if sock == s:
-              print 5
-              # incoming message from remote server, s
-              data = sock.recv(4096)
-              if data[0][0] == "[":
-                 data_ip,data_mess = data.split("]")
-                 data_ip,data_waste = data_ip.split("',")
-                 data_waste,data_ip = data_ip.split("(")
-                 data_ip = data_ip[1:]
-                 t9 = t8
-                 t8 = t7
-                 t7 = t6
-                 t6 = t5
-                 t5 = t4
-                 t4 = t3
-                 t3 = t2
-                 t2 = t1
-                 t1 = data_mess
-                           
-              print "ip:",data_ip," Text: ",data,mess
       mouse = pygame.mouse.get_pos()
       for event in pygame.event.get():
          

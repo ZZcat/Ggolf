@@ -122,7 +122,7 @@ if __name__ == '__main__':
    
 
    # Set up screen and clock
-   screen = pygame.display.set_mode((1000,1000), pygame.RESIZABLE)
+   screen = pygame.display.set_mode((1100,1100), pygame.RESIZABLE)
    clock = pygame.time.Clock()
    pygame.display.set_caption('GGolf')
    
@@ -156,41 +156,20 @@ if __name__ == '__main__':
    pygame.mouse.set_visible(False)
  #  menu = True
    menu = False
-   GGAME1 = Button("GGame1")
-   GGAME2 = Button("GGame2")
-   GGAME3 = Button("GGame3")
-   GGAME4 = Button("GGame4")
-   GGAME5 = Button("GGame5")
-   GGAME6 = Button("GGame6")
-   GGAME7 = Button("GGame7")
-   GGAME8 = Button("GGame8")
-   GGAME9 = Button("GGame9")
-   GGAME10 = Button("GGame10")
-   GGAME11 = Button("GGame11")
-   GGAME12 = Button("GGame12")
-   GGAME13 = Button("GGame13")
-   GGAME14 = Button("GGame14")
-   GGAME15 = Button("GGame15")
-   GGAME16 = Button("GGame16")
-   GGAME17 = Button("GGame17")
-   GGAME18 = Button("GGame18")
-   GGAME19 = Button("GGame19")
-   GGAME20 = Button("GGame20")
-   GGAME21 = Button("GGame21")
-   GGAME22 = Button("GGame22")
-   GGAME23 = Button("GGame23")
-   GGAME24 = Button("GGame24")
-   GGAME25 = Button("GGame25")
-   GGAME26 = Button("GGame26")
-   GGAME27 = Button("GGame27")
-   GGAME28 = Button("GGame28")
-   GGAME29 = Button("GGame29")
-   GGAME30 = Button("GGame30")
-   GGAME31 = Button("GGame31")
-   GGAME32 = Button("GGame32")
-   GGAME33 = Button("GGame33")
-   GGAME34 = Button("GGame34")
+   game = ""
+   par = 0
+   hn = ""
+   EASY = Button("Easy")
+   MEDIUM = Button("Medium")
+   HARD = Button("Hard")
+   E1 = Button("Kaley Espihosa")
+   E2 = Button("NoOne")
+   M1 = Button("Jayden Mclearon")
+   M2 = Button("Jadon Draeger")
    while run:
+      x, y = screen.get_size()
+      print x,y
+
       while menu == True:
          (mouseX, mouseY) = pygame.mouse.get_pos()
          mouse = pygame.mouse.get_pos()
@@ -198,108 +177,29 @@ if __name__ == '__main__':
             if event.type == pygame.MOUSEBUTTONDOWN:
                pygame.mixer.music.load("click.wav")
                pygame.mixer.music.play()
-               if MENU_GGAME1.obj.collidepoint(mouse):
-                  game = "GGame1"
-               elif MENU_GGAME2.obj.collidepoint(mouse):
-                  game = GGame2
-                  par = 5
-               elif MENU_GGAME3.obj.collidepoint(mouse):
-                  game = GGame3
-                  par = 5
-               elif MENU_GGAME4.obj.collidepoint(mouse):
-                  game = GGame4
-                  par = 5
-               elif MENU_GGAME5.obj.collidepoint(mouse):
-                  game = GGame5
-                  par = 5
-               elif MENU_GGAME6.obj.collidepoint(mouse):
-                  game = GGame6
-                  par = 5
-               elif MENU_GGAME7.obj.collidepoint(mouse):
-                  game = GGame7
-                  par = 5
-               elif MENU_GGAME8.obj.collidepoint(mouse):
-                  game = GGame8
-                  par = 5
-               elif MENU_GGAME9.obj.collidepoint(mouse):
-                  game = GGame9
-                  par = 5
-               elif MENU_GGAME10.obj.collidepoint(mouse):
-                  game = GGame10
-                  par = 5
-               elif MENU_GGAME11.obj.collidepoint(mouse):
-                  game = GGame11
-                  par = 5
-               elif MENU_GGAME12.obj.collidepoint(mouse):
-                  game = GGame12
-                  par = 5
-               elif MENU_GGAME13.obj.collidepoint(mouse):
-                  game = GGame13
-                  par = 5
-               elif MENU_GGAME14.obj.collidepoint(mouse):
-                  game = GGame14
-                  par = 5
-               elif MENU_GGAME15.obj.collidepoint(mouse):
-                  game = GGame15
-                  par = 5
-               elif MENU_GGAME16.obj.collidepoint(mouse):
-                  game = GGame16
-                  par = 5
-               elif MENU_GGAME17.obj.collidepoint(mouse):
-                  game = GGame17
-                  par = 5
-               elif MENU_GGAME18.obj.collidepoint(mouse):
-                  game = GGame18
-                  par = 5
-               elif MENU_GGAME19.obj.collidepoint(mouse):
-                  game = GGame19
-                  par = 5
-               elif MENU_GGAME20.obj.collidepoint(mouse):
-                  game = GGame20
-                  par = 5
-               elif MENU_GGAME21.obj.collidepoint(mouse):
-                  game = GGame21
-                  par = 5
-               elif MENU_GGAME22.obj.collidepoint(mouse):
-                  game = GGame22
-                  par = 5
-               elif MENU_GGAME23.obj.collidepoint(mouse):
-                  game = GGame23
-                  par = 5
-               elif MENU_GGAME24.obj.collidepoint(mouse):
-                  game = GGame24
-                  par = 5
-               elif MENU_GGAME25.obj.collidepoint(mouse):
-                  game = GGame25
-                  par = 5
-               elif MENU_GGAME26.obj.collidepoint(mouse):
-                  game = GGame26
-                  par = 5
-               elif MENU_GGAME27.obj.collidepoint(mouse):
-                  game = GGame27
-                  par = 5
-               elif MENU_GGAME28.obj.collidepoint(mouse):
-                  game = GGame28
-                  par = 5
-               elif MENU_GGAME29.obj.collidepoint(mouse):
-                  game = GGame29
-                  par = 5
-               elif MENU_GGAME30.obj.collidepoint(mouse):
-                  game = GGame30
-                  par = 5
-               elif MENU_GGAME31.obj.collidepoint(mouse):
-                  game = GGame31
-                  par = 5
-               elif MENU_GGAME32.obj.collidepoint(mouse):
-                  game = GGame32
-                  par = 5
-               elif MENU_GGAME33.obj.collidepoint(mouse):
-                  game = GGame33
-                  par = 5
-               elif MENU_GGAME34.obj.collidepoint(mouse):
-                  game = GGame34
-                  par = 5
-         
+               if EASY.obj.collidepoint(mouse):
+                  hn = "E"
+               elif MEDIUM.obj.collidepoint(mouse):
+                  hn = "M"
+               elif HARD.obj.collidepoint(mouse):
+                  hn = "H"
+               elif E1.obj.collidepoint(mouse):
+                  game = "Turtles"
+                  par = 1
+               elif E1.obj.collidepoint(mouse):
+                  game = "Black hole"
+                  par = 1
+               elif E2.obj.collidepoint(mouse):
+                  game = "Hole 1"
+                  par = 2
+         if not hn == "":
+            if hn == "E":
+               pass
+            elif hn == "M":
+               pass
+            elif hn == "H":
+               pass
+            
          screen.blit(pointer,((mouseX-30),(mouseY-30)))
          pygame.display.update()
          screen.fill(BLACK)

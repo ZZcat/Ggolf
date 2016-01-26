@@ -26,46 +26,48 @@ _____.___.                                      __    .__
 Warning!!!!
 You must have git and python installed"""
 
-print "cheacking for updates..."
-import urllib2,os
-response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Ggolf/master/version.txt')
-html = response.read()
-web_vesion = html[:5]
-f = open('version.txt', 'r')
-vesion = f.read()
-print "Your vesion is ",vesion,"\nThe newest vesion is ", web_vesion
-if int(vesion) == int(web_vesion):
-   print "You have the newest vesion!"
-   run = True
-else:
-  try:
-   print "###You need to update this program"
-   print "###Updating..."
-   print "\n###Reading lines"
-   folder_dir = os.popen("pwd").readlines()
-   print "###Done!!!"
-   print "\n###Cuting var"
-   folder_dir = folder_dir[:-10]
-   print "###Done!!!\n\n###Cloning dicrectory"
-   com = "git clone https://github.com/ZZcat/C-code.git"
-   os.system(com)
-   print "###Done\n\n###Moving directory"
-   com = "mv C-code " , folder_dir
-   print "###Done!!!"
-   print "\n###Removing copy folder"
-   com = "rm C-code"
-   print "###Done!!!"
-   print "Please restart this program"
-   run = False
-  except:
-     print "#########################################################"
-     print "#           This program needs to update                #"
-     print "#         But you don't have git installed              #"
-     print "#              Please download git or                   #"
-     print "#    go to the following website to download the code   #"
-     print "#              https://github.com/ZZcat/Ggolf           #"
-     print "#########################################################"
-     run = False
+print "Updating disabled"
+run = True
+##print "cheacking for updates..."
+##import urllib2,os
+##response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Ggolf/master/version.txt')
+##html = response.read()
+##web_vesion = html[:5]
+##f = open('version.txt', 'r')
+##vesion = f.read()
+##print "Your vesion is ",vesion,"\nThe newest vesion is ", web_vesion
+##if int(vesion) == int(web_vesion):
+##   print "You have the newest vesion!"
+##   run = True
+##else:
+##  try:
+##   print "###You need to update this program"
+##   print "###Updating..."
+##   print "\n###Reading lines"
+##   folder_dir = os.popen("pwd").readlines()
+##   print "###Done!!!"
+##   print "\n###Cuting var"
+##   folder_dir = folder_dir[:-10]
+##   print "###Done!!!\n\n###Cloning dicrectory"
+##   com = "git clone https://github.com/ZZcat/C-code.git"
+##   os.system(com)
+##   print "###Done\n\n###Moving directory"
+##   com = "mv C-code " , folder_dir
+##   print "###Done!!!"
+##   print "\n###Removing copy folder"
+##   com = "rm C-code"
+##   print "###Done!!!"
+##   print "Please restart this program"
+##   run = False
+##  except:
+##     print "#########################################################"
+##     print "#           This program needs to update                #"
+##     print "#         But you don't have git installed              #"
+##     print "#              Please download git or                   #"
+##     print "#    go to the following website to download the code   #"
+##     print "#              https://github.com/ZZcat/Ggolf           #"
+##     print "#########################################################"
+##     run = False
 
 
 
@@ -112,7 +114,8 @@ class Button:
          self.is_hover = False
 
 
-if __name__ == '__main__':
+if run == True:
+   print "1"
    # Define some colors
    BLACK = (0, 0, 0)
    WHITE = (255, 255, 255)
@@ -120,12 +123,16 @@ if __name__ == '__main__':
    GREEN = (0, 255, 0)
    BLUE = (0, 0, 255)
    
-
+   print "s"
    # Set up screen and clock
-   screen = pygame.display.set_mode((1100,1100), pygame.RESIZABLE)
-   clock = pygame.time.Clock()
-   pygame.display.set_caption('GGolf')
+   print "3b"
+   screen = pygame.display.set_mode((1000,1000))#pygame.RESIZABLE)
    
+   print "mid"
+   clock = pygame.time.Clock()
+   print "2a"
+   pygame.display.set_caption('GGolf')
+   print "2"
 
    # Set up vars
    DATE_clicked = 1
@@ -145,12 +152,12 @@ if __name__ == '__main__':
    ## Setup text
    font = pygame.font.SysFont('monospace',100) #SysFont creates a font object from available pygame fonts
 
-
+   print "3"
    ## load images
-   pointer = pygame.image.load("cat_pointer.gif")
+   pointer = pygame.image.load("cat_pointer.gif").convert_alpha()
    pointerrect = pointer.get_rect()
    grid = pygame.image.load("grid.png")
-
+   print "4"
    shifted = False
    sr = '\'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\\\'()*+,-./:;<=>?@[\]^_`{|}~\''
    pygame.mouse.set_visible(False)
@@ -167,6 +174,7 @@ if __name__ == '__main__':
    M1 = Button("Jayden Mclearon")
    M2 = Button("Jadon Draeger")
    while run:
+      print "b5"
       x, y = screen.get_size()
       print x,y
 
@@ -208,7 +216,7 @@ if __name__ == '__main__':
            
       (mouseX, mouseY) = pygame.mouse.get_pos()
       mouse = pygame.mouse.get_pos()
-      
+      print "3h3"
       events = pygame.event.get()
       for event in events:
             if event.type == KEYUP and typing == True:
@@ -315,7 +323,7 @@ if __name__ == '__main__':
                     elif event.key == K_SLASH and '?' in sr: text += '?'
          
             if event.type == pygame.QUIT:
-               run = False
+ #              run = False
                pygame.quit()
                sys.quit()
                print "quit"
@@ -433,7 +441,7 @@ if __name__ == '__main__':
       else:
          TEXT_text = "Type your rule here:"+str(text)
 
-      
+      print "2h2"
       
       # initialize font; must be called after 'pygame.init()' to avoid 'Font not Initialized' error
       myfont = pygame.font.SysFont("monospace", 15)
@@ -441,14 +449,17 @@ if __name__ == '__main__':
       # render text
       label = myfont.render(TEXT_text, 1, (0,0,0))
       
-      
+      print "mid3openssl"
       TIME.draw(screen, mouse, (850,15,120,20), (875,18))
+      print "14"
       DATE.draw(screen, mouse, (700,15,100,20), (724,18))
       TEXT.draw(screen, mouse, (30, 980,660,40), (34,983))
+      print "12"
       screen.blit(label, (30, 980))
-      
+      print "ah1"
       screen.blit(pointer,((mouseX-30),(mouseY-30)))
       pygame.display.update()
       screen.fill(BLACK)
       screen.blit(grid,(0,0))
+      print "a"
       
